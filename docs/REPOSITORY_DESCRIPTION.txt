@@ -1,0 +1,1 @@
+Versioned OpenAlex-derived teaching datasets for research methods, data analysis, and AI-assisted research, built reproducibly in Python.
