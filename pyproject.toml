@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "soda-openalex"
+version = "0.2.1"
+description = "Versioned OpenAlex teaching datasets for research methods, data analysis, and AI-assisted research."
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = []
+
+[project.scripts]
+soda-openalex = "soda_openalex.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
