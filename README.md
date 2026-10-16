@@ -2,9 +2,13 @@
 
 Versioned, reusable OpenAlex-derived datasets for teaching research methods, data analysis, and AI-assisted research workflows.
 
-## Use a downloaded dataset
+## Quick start with a downloaded dataset
 
-Download the versioned teaching release and use it directly; you do not need to run the build pipeline or access the OpenAlex API.
+Version 1.0.0 is published on [Zenodo](https://zenodo.org/records/23419332), with 11,700 works across 390 sampling strata. 
+
+**For research, teaching, or analysis, download the file named `soda-openalex-teaching-<version>.zip`. The current version is [soda-openalex-teaching-1.0.0.zip](https://zenodo.org/records/23419332/files/soda-openalex-teaching-1.0.0.zip?download=1).** This is the ready-to-use dataset; you do not need to run the build pipeline or access the OpenAlex API.
+
+> The separate `soda-openalex-reproducibility-<version>.zip` contains raw records and build code for auditing or rebuilding; it is optional for dataset users.
 
 The teaching release contains 16 UTF-8 CSV tables, `sample_manifest.csv`, schema information, and checksums. Start with `works.csv`, then join the other tables using the keys in the [codebook](docs/CODEBOOK.md). Abstracts are JSON inverted indexes, not plaintext.
 
@@ -21,16 +25,7 @@ data/releases/1.0.0/
 └── checksums.json
 ```
 
-**Download status:** version 1.0.0 was generated locally on 2026-10-16, with 11,700 works across all 390 strata. The DOI provided for this release is [10.5281/zenodo.23419332](https://doi.org/10.5281/zenodo.23419332); use its Zenodo record for release files once published. Cloning this repository does not download the data: `data/` is excluded from Git.
-
-Extract the teaching ZIP and enter its top-level folder. Its `data/releases/1.0.0/` directory contains the CSV files. The included examples use only the Python standard library or base R:
-
-```sh
-python3 examples/load_data.py --data data/releases/1.0.0
-Rscript examples/load_data.R data/releases/1.0.0
-```
-
-You can run either example, depending on the language you use. For other releases, replace the data directory with the extracted version's path. The same [Python loader](examples/load_data.py) and [R loader](examples/load_data.R) work from the cloned repository root when its data directory is populated. uv is only needed for the source-checkout development workflow below; it is not required to read the CSVs.
+The [Python loader](examples/load_data.py) and [R loader](examples/load_data.R) are useful starting points to read and explore the datasets.
 
 ## Rebuild or sample a new dataset
 
@@ -122,12 +117,6 @@ After extracting either ZIP, enter its top-level folder and run `python3 verify_
 Upload both ZIPs to the **same versioned Zenodo record**, with the accompanying checksums and report described in `ZENODO.md`. Each new published record version receives a version-specific DOI and shares a stable concept DOI with the other versions. Use the concept DOI for a project-level README link and the version-specific DOI when citing data used in an analysis. Use **New version** on the existing record for updated data files; metadata-only edits do not need a new version. See [Zenodo DOI versioning](https://zenodo.org/help/versioning).
 
 Software-only changes do not require a new dataset publication. If you choose to publish changed archive files, use Zenodo's versioning workflow. Generating a new local bundle does not update Zenodo. Existing ZIPs are frozen source snapshots and can legitimately contain older documentation; generate a new local package directory to include current code and docs. Keep generated deposit materials out of Git with the rest of `data/`.
-
-## Cite dataset 1.0.0
-
-*SoDa OpenAlex Teaching Dataset*, version 1.0.0. Zenodo. [https://doi.org/10.5281/zenodo.23419332](https://doi.org/10.5281/zenodo.23419332).
-
-Use the creator names and publication date from the published Zenodo record when preparing a full citation. This is the DOI supplied for dataset 1.0.0; a concept DOI for all versions has not been recorded here.
 
 ## Design and reproducibility
 
