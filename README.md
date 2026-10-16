@@ -166,7 +166,7 @@ These versions identify different things and do not need to match:
 | Dataset version | A particular frozen data release | `dataset_version` in the sampling config | When releasing new sampled IDs, refreshed metadata, corrected values, or other changes to the data. |
 | Schema version | Table names, columns, keys, representations, and variable meanings | `SCHEMA_VERSION` and the contract in `src/soda_openalex/schema.py`; selected by `schema_version` in the sampling config | When changing the exported structure or meaning of variables. |
 
-The initial release used **builder 0.1.0 to produce dataset 1.0.0 using schema 1.0.0**. Builder 0.2.0 introduced automatic packaging; the current builder is 0.2.1. Packaging an existing release preserves its original builder provenance and separately records the packager version. The builder version tells developers which software was used; the dataset version tells researchers which data they analysed; the schema version tells consumers which table contract to expect. All three are recorded in `release.json`.
+The initial release used **builder 0.1.0 to produce dataset 1.0.0 using schema 1.0.0**. Builder 0.2.0 introduced automatic packaging; the current builder is 0.2.2. Packaging an existing release preserves its original builder provenance and separately records the packager version. The builder version tells developers which software was used; the dataset version tells researchers which data they analysed; the schema version tells consumers which table contract to expect. All three are recorded in `release.json`.
 
 Examples:
 
