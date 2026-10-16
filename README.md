@@ -21,7 +21,7 @@ data/releases/1.0.0/
 └── checksums.json
 ```
 
-**Download status:** version 1.0.0 was generated locally on 2026-10-16, with 11,700 works across all 390 strata. A public download has not yet been published. Cloning this repository does not download the data: `data/` is excluded from Git.
+**Download status:** version 1.0.0 was generated locally on 2026-10-16, with 11,700 works across all 390 strata. The DOI provided for this release is [10.5281/zenodo.23419332](https://doi.org/10.5281/zenodo.23419332); use its Zenodo record for release files once published. Cloning this repository does not download the data: `data/` is excluded from Git.
 
 Extract the teaching ZIP and enter its top-level folder. Its `data/releases/1.0.0/` directory contains the CSV files. The included examples use only the Python standard library or base R:
 
@@ -123,6 +123,12 @@ After extracting either ZIP, enter its top-level folder and run `python3 verify_
 Upload both ZIPs to the **same versioned Zenodo record**, with the accompanying checksums, report, and citation guidance described in `ZENODO.md`. Each new published record version receives a version-specific DOI and shares a stable concept DOI with the other versions. Use the concept DOI for a project-level README link and the version-specific DOI when citing data used in an analysis. Use **New version** on the existing record for updated data files; metadata-only edits do not need a new version. See [Zenodo DOI versioning](https://zenodo.org/help/versioning).
 
 Software-only changes do not require a new dataset publication. If you choose to publish changed archive files, use Zenodo's versioning workflow. Generating a new local bundle does not update Zenodo. Existing ZIPs are frozen source snapshots and can legitimately contain older documentation; generate a new local package directory to include current code and docs. Keep generated deposit materials out of Git with the rest of `data/`.
+
+## Cite dataset 1.0.0
+
+*SoDa OpenAlex Teaching Dataset*, version 1.0.0. Zenodo. [https://doi.org/10.5281/zenodo.23419332](https://doi.org/10.5281/zenodo.23419332).
+
+Use the creator names and publication date from the published Zenodo record when preparing a full citation. This is the DOI supplied for dataset 1.0.0; a concept DOI for all versions has not been recorded here.
 
 ## Design and reproducibility
 

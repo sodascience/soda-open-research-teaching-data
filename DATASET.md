@@ -27,7 +27,7 @@ Full raw JSON records and per-stratum API responses preserve source fields even 
 
 Dataset 1.0.0 and schema 1.0.0 define this initial design. Freeze and archive IDs **and metadata** together. Create a new dataset version for any new retrieval, sample, source correction, or transformation change that alters data. Bump schema version for changed table contracts. Keep config, source revision, release metadata, and checksums with each archive. `checksums.json` detects accidental modification, not malicious modification by someone who can replace checksums too.
 
-The initial production snapshot was generated locally on 2026-10-16 and passed validation: 11,700 distinct eligible works across 390 strata. Raw snapshot: `data/raw/1.0.0`; derived release: `data/releases/1.0.0`. These artifacts are excluded from Git and have not been published. The checksummed `release.json` records actual row counts for all tables.
+The initial production snapshot was generated locally on 2026-10-16 and passed validation: 11,700 distinct eligible works across 390 strata. Raw snapshot: `data/raw/1.0.0`; derived release: `data/releases/1.0.0`. These artifacts are excluded from Git. The DOI provided for dataset 1.0.0 is [10.5281/zenodo.23419332](https://doi.org/10.5281/zenodo.23419332); release-file availability is determined by the Zenodo record. The checksummed `release.json` records actual row counts for all tables.
 
 ## Sources checked 2026-10-16
 
