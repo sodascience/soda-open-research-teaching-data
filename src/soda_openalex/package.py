@@ -204,22 +204,12 @@ No OpenAlex API key is needed. Abstracts remain inverted indexes.
 
 Dataset contributions: CC0 1.0 (LICENSE-DATA). Example code: MIT (LICENSE).
 Linked publications and full text are not included or licensed by this archive.
-See CITATION.md for citation guidance. The accompanying reproducibility archive
-contains the raw snapshot and Python source for rebuilding these tables.
-'''
-    citation = f'''# Citation guidance
-
-Dataset: SoDa OpenAlex teaching dataset, version {version}.
-Cite the version-specific Zenodo DOI and the creators listed on that record once
-published. The stable concept DOI represents all versions and is suitable for a
-project-level link; use the version-specific DOI for the data actually analysed.
-Both ZIPs share one versioned Zenodo record and its DOI. No DOI or creator names
-have been invented for this local bundle.
-Schema version: {metadata['schema_version']}.
-Source data: OpenAlex (https://openalex.org/); dataset contributions: CC0 1.0.
+Use the citation provided on the published Zenodo record. The accompanying
+reproducibility archive contains the raw snapshot and Python source for rebuilding
+these tables.
 '''
     teaching_count = write_archive(stage / (teaching_name + '.zip'), teaching_name, teaching_files,
-        {'README.md': teaching_readme, 'verify_archive.py': VERIFY_SCRIPT, 'CITATION.md': citation, 'SAMPLING.md': sampling_notes})
+        {'README.md': teaching_readme, 'verify_archive.py': VERIFY_SCRIPT, 'SAMPLING.md': sampling_notes})
     repro_files = {'snapshot/' + p.relative_to(snapshot).as_posix(): p
                    for p in snapshot.rglob('*') if p.is_file()}
     repro_files.update({'code/' + name: path for name, path in sources.items()})
@@ -250,11 +240,12 @@ packager/builder version is {__version__}. Original provenance is retained.
 
 Dataset contributions: CC0 1.0 (code/LICENSE-DATA); software: MIT (code/LICENSE).
 Abstracts remain inverted indexes; no plaintext abstracts or full text are added.
-See source_provenance.json for exact source hashes and CITATION.md for citation.
+See source_provenance.json for exact source hashes. Use the citation provided
+on the published Zenodo record.
 '''
     repro_count = write_archive(stage / (repro_name + '.zip'), repro_name, repro_files,
         {'README.md': repro_readme, 'verify_archive.py': VERIFY_SCRIPT, 'compare_release.py': COMPARE_SCRIPT,
-         'CITATION.md': citation, 'SAMPLING.md': sampling_notes, 'source_provenance.json': json.dumps(provenance, sort_keys=True, indent=2) + '\n'})
+         'SAMPLING.md': sampling_notes, 'source_provenance.json': json.dumps(provenance, sort_keys=True, indent=2) + '\n'})
     dump(stage / 'release_report.json', dict(dataset_version=version, schema_version=metadata['schema_version'],
          original_builder_version=metadata['builder_version'], packager_version=__version__,
          validation='passed', config=config, table_rows=metadata['table_rows'],
@@ -269,10 +260,9 @@ See source_provenance.json for exact source hashes and CITATION.md for citation.
         keywords=['OpenAlex', 'teaching', 'research methods', 'reproducibility'],
         creators=[], publication_date=None, doi=None, concept_doi=None,
         status='Local metadata worksheet, not an API payload; complete creators and publication details in Zenodo.'))
-    (stage / 'CITATION.md').write_text(citation, encoding='utf-8', newline='\n')
     (stage / 'ZENODO.md').write_text(f'''# Zenodo deposit materials — dataset {version}
 
-Upload both ZIPs, SHA256SUMS, release_report.json, and CITATION.md to the same
+Upload both ZIPs, SHA256SUMS, and release_report.json to the same
 versioned dataset record. The teaching ZIP serves users; the reproducibility ZIP
 serves auditing and rebuilding. Each ZIP includes its own SHA-256 payload manifest,
 verification script, README, documentation, and license information.

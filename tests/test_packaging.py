@@ -44,6 +44,7 @@ class PackagingTests(unittest.TestCase):
         for name, target in [('teaching', teaching), ('reproducibility', repro)]:
             with zipfile.ZipFile(output / f'soda-openalex-{name}-test.zip') as archive:
                 self.assertFalse(any('.env' in p or '__pycache__' in p or '.git/' in p for p in archive.namelist()))
+                self.assertFalse(any(Path(name).name == 'CITATION.md' for name in archive.namelist()))
                 archive.extractall(target)
             unpacked = next(target.iterdir())
             result = subprocess.run([sys.executable, 'verify_archive.py'], cwd=unpacked,
@@ -73,7 +74,8 @@ class PackagingTests(unittest.TestCase):
         sampling = (teach_root / 'SAMPLING.md').read_text()
         self.assertIn('Works per year × primary-field stratum: 1', sampling)
         self.assertIn('Validated works: 1', sampling)
-        self.assertIn('concept DOI', (teach_root / 'CITATION.md').read_text())
+        self.assertFalse((output / 'CITATION.md').exists())
+        self.assertIn('concept DOI', (output / 'ZENODO.md').read_text())
         self.assertEqual(json.loads((output / 'release_report.json').read_text())['packager_version'], __version__)
         # Archived verifier detects a payload that was modified after extraction.
         (teach_root / 'data/releases/test/works.csv').write_text('changed')

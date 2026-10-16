@@ -104,7 +104,6 @@ data/zenodo/1.0.0/
 ├── SHA256SUMS
 ├── release_report.json
 ├── zenodo-metadata-draft.json
-├── CITATION.md
 └── ZENODO.md
 ```
 
@@ -112,7 +111,7 @@ data/zenodo/1.0.0/
 - **Reproducibility ZIP:** frozen raw snapshot, exact packaged source, tests, documentation, licenses, original release checksums, a release-specific `SAMPLING.md`, offline rebuild instructions, and a script that compares rebuilt tables with the original release. Original CSV files are not duplicated in this archive.
 - **SHA256SUMS:** hashes of the two ZIPs and accompanying files. Each ZIP also contains a payload checksum manifest and `verify_archive.py`.
 - **release_report.json:** successful validation, actual row counts, configuration, software versions, and source hashes. A Git revision is recorded when available; exact source hashes also capture uncommitted files.
-- **zenodo-metadata-draft.json, CITATION.md, ZENODO.md:** a metadata worksheet, citation guidance, and upload instructions. Complete the actual creators, publication date, and DOI in Zenodo. The worksheet is not a ready-to-submit API payload. Declare CC0 for dataset contributions and MIT for included software; no creator names or DOI are invented.
+- **zenodo-metadata-draft.json, ZENODO.md:** a metadata worksheet and upload instructions. Zenodo provides the citation from the record metadata; no separate citation file is generated. Complete the actual creators, publication date, and DOI in Zenodo. The worksheet is not a ready-to-submit API payload. Declare CC0 for dataset contributions and MIT for included software; no creator names or DOI are invented.
 
 Inputs are validated before packaging. ZIP entries use stable ordering and timestamps, and archived bytes are checked before the final package directory appears. Existing bundles cannot be overwritten. Failed packaging may leave a `.partial` directory for inspection; the validated snapshot and CSV release remain available. After fixing the failure, use `package` on those existing inputs rather than rerunning `sample`.
 
@@ -120,7 +119,7 @@ Run packaging from the source checkout. If the command cannot find the codebook 
 
 After extracting either ZIP, enter its top-level folder and run `python3 verify_archive.py`. The reproducibility README includes offline rebuilding and comparison commands. The comparison checks table, manifest, and schema bytes; builder provenance in `release.json` may differ when an older dataset is packaged with newer software.
 
-Upload both ZIPs to the **same versioned Zenodo record**, with the accompanying checksums, report, and citation guidance described in `ZENODO.md`. Each new published record version receives a version-specific DOI and shares a stable concept DOI with the other versions. Use the concept DOI for a project-level README link and the version-specific DOI when citing data used in an analysis. Use **New version** on the existing record for updated data files; metadata-only edits do not need a new version. See [Zenodo DOI versioning](https://zenodo.org/help/versioning).
+Upload both ZIPs to the **same versioned Zenodo record**, with the accompanying checksums and report described in `ZENODO.md`. Each new published record version receives a version-specific DOI and shares a stable concept DOI with the other versions. Use the concept DOI for a project-level README link and the version-specific DOI when citing data used in an analysis. Use **New version** on the existing record for updated data files; metadata-only edits do not need a new version. See [Zenodo DOI versioning](https://zenodo.org/help/versioning).
 
 Software-only changes do not require a new dataset publication. If you choose to publish changed archive files, use Zenodo's versioning workflow. Generating a new local bundle does not update Zenodo. Existing ZIPs are frozen source snapshots and can legitimately contain older documentation; generate a new local package directory to include current code and docs. Keep generated deposit materials out of Git with the rest of `data/`.
 
